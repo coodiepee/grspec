@@ -145,7 +145,12 @@ grspec init --tools all --profile standard
 
 ## Acknowledgments
 
-grspec evolved from the [OpenSpec](https://github.com/andresz1/openspec) project. The core idea — structured specifications as a communication layer between humans and AI — builds on OpenSpec's foundation with an opinionated workflow, multi-tool support, and a persistent knowledge layer.
+grspec stands on open work from several projects. Thank you to the authors and contributors:
+
+- **[OpenSpec](https://github.com/Fission-AI/OpenSpec)** ([Fission AI](https://github.com/Fission-AI)) — the spec-driven workflow between humans and AI coding assistants. grspec continues that foundation with its own product identity, GRSX workflow, and multi-tool delivery.
+- **[Superpowers](https://github.com/obra/superpowers)** ([obra](https://github.com/obra)) — disciplined agent skills and process patterns (brainstorming, planning, TDD, review, verification) that shaped grspec's execution workflows.
+- **[LLM Wiki](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f)** ([Andrej Karpathy](https://github.com/karpathy)) — the persistent, LLM-maintained wiki pattern that inspired `grspec/wiki/` as a compounding knowledge layer.
+- **[UI UX Pro Max](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill)** ([nextlevelbuilder](https://github.com/nextlevelbuilder)) — the UI/UX design intelligence datasets, rules, and search patterns behind `grspec ui`.
 
 ## Contributing
 
