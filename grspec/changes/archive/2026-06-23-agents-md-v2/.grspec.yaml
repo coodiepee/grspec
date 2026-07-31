@@ -1,0 +1,27 @@
+schema: spec-driven
+created: 2026-06-15
+touches:
+  - path: src/core/agents-md/template.ts
+    intent: "Redesign section interface with new sections and ordering"
+    mode: modify
+  - path: src/core/agents-md/generator.ts
+    intent: "Add tech stack detection, git workflow defaults, boundaries builder"
+    mode: modify
+  - path: src/core/agents-md/pointer-files.ts
+    intent: "Create CLAUDE.md and GEMINI.md pointer file generators"
+    mode: create
+  - path: src/core/agents-md/index.ts
+    intent: "Export new pointer file generators"
+    mode: modify
+  - path: src/core/init.ts
+    intent: "Always-generate AGENTS.md, conditional pointer file generation"
+    mode: modify
+  - path: test/core/agents-md/generator.test.ts
+    intent: "Update tests for new template sections and detection logic"
+    mode: modify
+  - path: test/core/agents-md/pointer-files.test.ts
+    intent: "Add tests for CLAUDE.md and GEMINI.md generation"
+    mode: create
+  - path: test/core/init.test.ts
+    intent: "Add tests for always-generate and pointer file behavior"
+    mode: modify

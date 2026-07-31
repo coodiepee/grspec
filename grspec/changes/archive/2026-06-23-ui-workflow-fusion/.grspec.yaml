@@ -1,0 +1,31 @@
+schema: spec-driven
+created: 2026-06-23
+context:
+  bounded-contexts:
+    - workflow-orchestration
+    - ui-intelligence
+touches:
+  - path: src/core/templates/content/propose.md
+    intent: "Add UI detection step after artifact creation"
+    mode: modify
+  - path: src/core/templates/content/ff-change.md
+    intent: "Add UI detection step before final status"
+    mode: modify
+  - path: src/core/templates/content/apply-change.md
+    intent: "Add design-system context guidance and post-task UI review"
+    mode: modify
+  - path: src/core/templates/content/verify-change.md
+    intent: "Add UI Quality dimension after Coherence"
+    mode: modify
+  - path: src/commands/workflow/instructions.ts
+    intent: "Read ui-detected from yaml, embed inline CRITICAL rules"
+    mode: modify
+  - path: src/core/templates/workflows/propose.ts
+    intent: "Sync inline command content with updated content template"
+    mode: modify
+  - path: src/core/templates/workflows/apply-change.ts
+    intent: "Sync inline command content with updated content template"
+    mode: modify
+  - path: src/core/templates/workflows/verify-change.ts
+    intent: "Sync inline command content with updated content template"
+    mode: modify

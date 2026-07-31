@@ -1,0 +1,29 @@
+schema: spec-driven
+created: 2026-06-11
+context:
+  bounded-contexts:
+    - artifact-workflow
+    - cli-interface
+    - template-system
+touches:
+  - path: src/core/ui/detect.ts
+    intent: "Upgrade detection threshold from ≥1 to ≥3 keyword matches"
+    mode: modify
+  - path: src/commands/ui.ts
+    intent: "Add detect subcommand for programmatic UI detection"
+    mode: modify
+  - path: src/core/artifact-graph/instruction-loader.ts
+    intent: "Add conditional design enrichment based on design-system existence"
+    mode: modify
+  - path: src/commands/workflow/instructions.ts
+    intent: "Embed CRITICAL UI rules inline when ui-detected is set"
+    mode: modify
+  - path: src/core/templates/workflows/ui.ts
+    intent: "Collapse command templates from 7 to 2"
+    mode: modify
+  - path: .cursor/commands/grsx-ui.md
+    intent: "Rewrite as smart routing entry point"
+    mode: modify
+  - path: .cursor/skills/grspec-ui/SKILL.md
+    intent: "Update Workflow Integration section for new hooks"
+    mode: modify

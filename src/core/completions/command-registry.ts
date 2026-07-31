@@ -1,0 +1,510 @@
+import { CommandDefinition, FlagDefinition } from './types.js';
+
+/**
+ * Common flags used across multiple commands
+ */
+const COMMON_FLAGS = {
+  json: {
+    name: 'json',
+    description: 'Output as JSON',
+  } as FlagDefinition,
+  jsonValidation: {
+    name: 'json',
+    description: 'Output validation results as JSON',
+  } as FlagDefinition,
+  strict: {
+    name: 'strict',
+    description: 'Enable strict validation mode',
+  } as FlagDefinition,
+  noInteractive: {
+    name: 'no-interactive',
+    description: 'Disable interactive prompts',
+  } as FlagDefinition,
+  type: {
+    name: 'type',
+    description: 'Specify item type when ambiguous',
+    takesValue: true,
+    values: ['change', 'spec'],
+  } as FlagDefinition,
+} as const;
+
+/**
+ * Registry of all grspec CLI commands with their flags and metadata.
+ * This registry is used to generate shell completion scripts.
+ */
+export const COMMAND_REGISTRY: CommandDefinition[] = [
+  {
+    name: 'init',
+    description: 'Initialize grspec in your project',
+    acceptsPositional: true,
+    positionalType: 'path',
+    flags: [
+      {
+        name: 'tools',
+        description: 'Configure AI tools non-interactively (e.g., "all", "none", or comma-separated tool IDs)',
+        takesValue: true,
+      },
+    ],
+  },
+  {
+    name: 'update',
+    description: 'Update grspec instruction files',
+    acceptsPositional: true,
+    positionalType: 'path',
+    flags: [],
+  },
+  {
+    name: 'list',
+    description: 'List items (changes by default, or specs with --specs)',
+    flags: [
+      {
+        name: 'specs',
+        description: 'List specs instead of changes',
+      },
+      {
+        name: 'changes',
+        description: 'List changes explicitly (default)',
+      },
+    ],
+  },
+  {
+    name: 'view',
+    description: 'Display an interactive dashboard of specs and changes',
+    flags: [],
+  },
+  {
+    name: 'validate',
+    description: 'Validate changes and specs',
+    acceptsPositional: true,
+    positionalType: 'change-or-spec-id',
+    flags: [
+      {
+        name: 'all',
+        description: 'Validate all changes and specs',
+      },
+      {
+        name: 'changes',
+        description: 'Validate all changes',
+      },
+      {
+        name: 'specs',
+        description: 'Validate all specs',
+      },
+      COMMON_FLAGS.type,
+      COMMON_FLAGS.strict,
+      COMMON_FLAGS.jsonValidation,
+      {
+        name: 'concurrency',
+        description: 'Max concurrent validations (defaults to env GRSPEC_CONCURRENCY or 6)',
+        takesValue: true,
+      },
+      COMMON_FLAGS.noInteractive,
+    ],
+  },
+  {
+    name: 'show',
+    description: 'Show a change or spec',
+    acceptsPositional: true,
+    positionalType: 'change-or-spec-id',
+    flags: [
+      COMMON_FLAGS.json,
+      COMMON_FLAGS.type,
+      COMMON_FLAGS.noInteractive,
+      {
+        name: 'deltas-only',
+        description: 'Show only deltas (JSON only, change-specific)',
+      },
+      {
+        name: 'requirements',
+        description: 'Show only requirements, exclude scenarios (JSON only, spec-specific)',
+      },
+      {
+        name: 'no-scenarios',
+        description: 'Exclude scenario content (JSON only, spec-specific)',
+      },
+      {
+        name: 'requirement',
+        short: 'r',
+        description: 'Show specific requirement by ID (JSON only, spec-specific)',
+        takesValue: true,
+      },
+    ],
+  },
+  {
+    name: 'archive',
+    description: 'Archive a completed change and update main specs',
+    acceptsPositional: true,
+    positionalType: 'change-id',
+    flags: [
+      {
+        name: 'yes',
+        short: 'y',
+        description: 'Skip confirmation prompts',
+      },
+      {
+        name: 'skip-specs',
+        description: 'Skip spec update operations',
+      },
+      {
+        name: 'no-validate',
+        description: 'Skip validation (not recommended)',
+      },
+    ],
+  },
+  {
+    name: 'workspace',
+    description: 'Set up and inspect coordination workspaces',
+    flags: [],
+    subcommands: [
+      {
+        name: 'setup',
+        description: 'Set up a workspace and link existing repos or folders',
+        flags: [
+          {
+            name: 'name',
+            description: 'Workspace name',
+            takesValue: true,
+          },
+          {
+            name: 'link',
+            description: 'Repo or folder link. Use <path> or <name>=<path>',
+            takesValue: true,
+          },
+          COMMON_FLAGS.json,
+          COMMON_FLAGS.noInteractive,
+        ],
+      },
+      {
+        name: 'list',
+        description: 'List known grspec workspaces',
+        flags: [
+          COMMON_FLAGS.json,
+        ],
+      },
+      {
+        name: 'ls',
+        description: 'List known grspec workspaces',
+        flags: [
+          COMMON_FLAGS.json,
+        ],
+      },
+      {
+        name: 'link',
+        description: 'Link an existing repo or folder to a workspace',
+        acceptsPositional: true,
+        positionals: [
+          {
+            name: 'name-or-path',
+            type: 'path',
+            optional: true,
+          },
+          {
+            name: 'path',
+            type: 'path',
+          },
+        ],
+        flags: [
+          {
+            name: 'workspace',
+            description: 'Workspace name from the local workspace registry',
+            takesValue: true,
+          },
+          COMMON_FLAGS.json,
+          COMMON_FLAGS.noInteractive,
+        ],
+      },
+      {
+        name: 'relink',
+        description: 'Update the local path for an existing workspace link',
+        acceptsPositional: true,
+        positionals: [
+          {
+            name: 'name',
+          },
+          {
+            name: 'path',
+            type: 'path',
+          },
+        ],
+        flags: [
+          {
+            name: 'workspace',
+            description: 'Workspace name from the local workspace registry',
+            takesValue: true,
+          },
+          COMMON_FLAGS.json,
+          COMMON_FLAGS.noInteractive,
+        ],
+      },
+      {
+        name: 'doctor',
+        description: 'Check what a workspace can resolve on this machine',
+        flags: [
+          {
+            name: 'workspace',
+            description: 'Workspace name from the local workspace registry',
+            takesValue: true,
+          },
+          COMMON_FLAGS.json,
+          COMMON_FLAGS.noInteractive,
+        ],
+      },
+    ],
+  },
+  {
+    name: 'feedback',
+    description: 'Submit feedback about grspec',
+    acceptsPositional: true,
+    flags: [
+      {
+        name: 'body',
+        description: 'Detailed description for the feedback',
+        takesValue: true,
+      },
+    ],
+  },
+  {
+    name: 'change',
+    description: 'Stacking helpers for active changes',
+    flags: [],
+    subcommands: [
+      {
+        name: 'graph',
+        description: 'Show dependency graph and recommended execution order',
+        flags: [COMMON_FLAGS.json],
+      },
+      {
+        name: 'next',
+        description: 'Show changes not blocked by unresolved dependencies',
+        flags: [COMMON_FLAGS.json],
+      },
+      {
+        name: 'overlap',
+        description: 'Show file-level overlap matrix across active changes',
+        flags: [
+          COMMON_FLAGS.json,
+          {
+            name: 'file',
+            description: 'Show changes touching a specific file',
+            takesValue: true,
+          },
+        ],
+      },
+      {
+        name: 'split',
+        description: 'Split a large change into stackable child slices',
+        acceptsPositional: true,
+        positionalType: 'change-id',
+        flags: [
+          {
+            name: 'children',
+            description: 'Names for child changes',
+            takesValue: true,
+          },
+          {
+            name: 'overwrite',
+            description: 'Regenerate existing child scaffolds',
+          },
+          {
+            name: 'force',
+            description: 'Alias for --overwrite',
+          },
+          COMMON_FLAGS.json,
+        ],
+      },
+    ],
+  },
+  {
+    name: 'completion',
+    description: 'Manage shell completions for grspec CLI',
+    flags: [],
+    subcommands: [
+      {
+        name: 'generate',
+        description: 'Generate completion script for a shell (outputs to stdout)',
+        acceptsPositional: true,
+        positionalType: 'shell',
+        flags: [],
+      },
+      {
+        name: 'install',
+        description: 'Install completion script for a shell',
+        acceptsPositional: true,
+        positionalType: 'shell',
+        flags: [
+          {
+            name: 'verbose',
+            description: 'Show detailed installation output',
+          },
+        ],
+      },
+      {
+        name: 'uninstall',
+        description: 'Uninstall completion script for a shell',
+        acceptsPositional: true,
+        positionalType: 'shell',
+        flags: [
+          {
+            name: 'yes',
+            short: 'y',
+            description: 'Skip confirmation prompts',
+          },
+        ],
+      },
+    ],
+  },
+  {
+    name: 'config',
+    description: 'View and modify global grspec configuration',
+    flags: [
+      {
+        name: 'scope',
+        description: 'Config scope (only "global" supported currently)',
+        takesValue: true,
+        values: ['global'],
+      },
+    ],
+    subcommands: [
+      {
+        name: 'path',
+        description: 'Show config file location',
+        flags: [],
+      },
+      {
+        name: 'list',
+        description: 'Show all current settings',
+        flags: [
+          COMMON_FLAGS.json,
+        ],
+      },
+      {
+        name: 'get',
+        description: 'Get a specific value (raw, scriptable)',
+        acceptsPositional: true,
+        flags: [],
+      },
+      {
+        name: 'set',
+        description: 'Set a value (auto-coerce types)',
+        acceptsPositional: true,
+        flags: [
+          {
+            name: 'string',
+            description: 'Force value to be stored as string',
+          },
+          {
+            name: 'allow-unknown',
+            description: 'Allow setting unknown keys',
+          },
+        ],
+      },
+      {
+        name: 'unset',
+        description: 'Remove a key (revert to default)',
+        acceptsPositional: true,
+        flags: [],
+      },
+      {
+        name: 'reset',
+        description: 'Reset configuration to defaults',
+        flags: [
+          {
+            name: 'all',
+            description: 'Reset all configuration (required)',
+          },
+          {
+            name: 'yes',
+            short: 'y',
+            description: 'Skip confirmation prompts',
+          },
+        ],
+      },
+      {
+        name: 'edit',
+        description: 'Open config in $EDITOR',
+        flags: [],
+      },
+      {
+        name: 'profile',
+        description: 'Configure workflow profile (interactive picker or preset shortcut)',
+        flags: [],
+      },
+    ],
+  },
+  {
+    name: 'schema',
+    description: 'Manage workflow schemas',
+    flags: [],
+    subcommands: [
+      {
+        name: 'which',
+        description: 'Show where a schema resolves from',
+        acceptsPositional: true,
+        positionalType: 'schema-name',
+        flags: [
+          COMMON_FLAGS.json,
+          {
+            name: 'all',
+            description: 'List all schemas with their resolution sources',
+          },
+        ],
+      },
+      {
+        name: 'validate',
+        description: 'Validate a schema structure and templates',
+        acceptsPositional: true,
+        positionalType: 'schema-name',
+        flags: [
+          COMMON_FLAGS.json,
+          {
+            name: 'verbose',
+            description: 'Show detailed validation steps',
+          },
+        ],
+      },
+      {
+        name: 'fork',
+        description: 'Copy an existing schema to project for customization',
+        acceptsPositional: true,
+        positionalType: 'schema-name',
+        flags: [
+          COMMON_FLAGS.json,
+          {
+            name: 'force',
+            description: 'Overwrite existing destination',
+          },
+        ],
+      },
+      {
+        name: 'init',
+        description: 'Create a new project-local schema',
+        acceptsPositional: true,
+        flags: [
+          COMMON_FLAGS.json,
+          {
+            name: 'description',
+            description: 'Schema description',
+            takesValue: true,
+          },
+          {
+            name: 'artifacts',
+            description: 'Comma-separated artifact IDs',
+            takesValue: true,
+          },
+          {
+            name: 'default',
+            description: 'Set as project default schema',
+          },
+          {
+            name: 'no-default',
+            description: 'Do not prompt to set as default',
+          },
+          {
+            name: 'force',
+            description: 'Overwrite existing schema',
+          },
+        ],
+      },
+    ],
+  },
+];

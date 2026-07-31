@@ -1,0 +1,32 @@
+{
+  "platform": "windsurf",
+  "displayName": "Windsurf",
+  "installType": "full",
+  "folderStructure": {
+    "root": ".windsurf",
+    "skillParentPath": "skills",
+    "filename": "SKILL.md"
+  },
+  "frontmatter": {
+    "name": "grspec-ui",
+    "description": "UI/UX design intelligence powered by grspec. 67 styles, 205 rules, 161 palettes, 57 font pairings, BM25 search."
+  },
+  "sections": {
+    "quickReference": true
+  },
+  "title": "grspec-ui",
+  "description": "UI/UX design intelligence powered by grspec. Contains 67 styles, 205 actionable rules, 161 color palettes, 57 font pairings, and BM25-powered search across all design data.",
+  "skillOrWorkflow": "Skill",
+  "skills": [
+    "grspec-ui-init",
+    "grspec-ui-search",
+    "grspec-ui-design-system",
+    "grspec-ui-rules",
+    "grspec-ui-reference",
+    "grspec-ui-review",
+    "grspec-ui-status",
+    "grspec-ui-detect",
+    "grspec-ui-install",
+    "grspec-ui-sync"
+  ]
+}

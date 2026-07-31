@@ -1,0 +1,18 @@
+schema: spec-driven
+created: 2026-06-15
+touches:
+  - path: src/core/rule-generation/rule-templates.ts
+    intent: "Rewrite code-philosophy body to DO/DO NOT format"
+    mode: modify
+  - path: src/core/agents-md/template.ts
+    intent: "Add AGENTS.md section templates and code-philosophy summary"
+    mode: create
+  - path: src/core/agents-md/generator.ts
+    intent: "Add project metadata detection and AGENTS.md assembly"
+    mode: create
+  - path: src/core/agents-md/index.ts
+    intent: "Add barrel export for agents-md module"
+    mode: create
+  - path: src/core/init.ts
+    intent: "Integrate AGENTS.md generation step into init command"
+    mode: modify

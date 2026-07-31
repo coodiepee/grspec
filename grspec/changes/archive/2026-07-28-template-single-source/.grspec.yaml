@@ -1,0 +1,22 @@
+schema: spec-driven
+created: 2026-07-28
+schemaVersion: 2
+ui:
+  detected: false
+  keywords: []
+touches:
+  - path: src/core/templates/workflows/
+    intent: Replace INLINE command bodies with loadWorkflowTemplate
+    mode: modify
+  - path: src/core/templates/content/
+    intent: Merge and quality-edit shared Markdown; add wiki-*.md
+    mode: modify
+  - path: test/core/templates/
+    intent: Add byte-identity parity and content-guard tests
+    mode: modify
+  - path: .cursor/commands/
+    intent: Regenerate slash command files from single source
+    mode: modify
+  - path: .cursor/skills/
+    intent: Regenerate skill files from single source
+    mode: modify

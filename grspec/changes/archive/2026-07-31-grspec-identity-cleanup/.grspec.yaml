@@ -1,0 +1,30 @@
+schema: spec-driven
+created: 2026-07-31
+schemaVersion: 2
+uiDetected: false
+uiKeywords: []
+touches:
+  - path: src/core/legacy-cleanup.ts
+    intent: Delete closed-window marker-era cleanup module
+    mode: delete
+  - path: src/core/init.ts
+    intent: Remove legacy-cleanup integration from init
+    mode: modify
+  - path: src/core/update.ts
+    intent: Remove legacy-cleanup integration from update
+    mode: modify
+  - path: src/commands/change.ts
+    intent: Drop deprecated show/list/validate; keep stacking helpers
+    mode: modify
+  - path: src/commands/spec.ts
+    intent: Unregister deprecated spec command tree
+    mode: delete
+  - path: src/utils/task-progress.ts
+    intent: Read plan.md only; ignore tasks.md
+    mode: modify
+  - path: src/core/profiles.ts
+    intent: Reject profile core without alias
+    mode: modify
+  - path: .gitignore
+    intent: Ignore .grcode cache and sessions
+    mode: modify

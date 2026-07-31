@@ -1,0 +1,27 @@
+schema: spec-driven
+created: 2026-06-11
+touches:
+  - path: src/core/rule-generation/types.ts
+    intent: "Create RuleContent, ToolRuleAdapter, and GeneratedRule interfaces"
+    mode: create
+  - path: src/core/rule-generation/generator.ts
+    intent: "Create generateRule and generateRules functions"
+    mode: create
+  - path: src/core/rule-generation/registry.ts
+    intent: "Create RuleAdapterRegistry with static adapter registration"
+    mode: create
+  - path: src/core/rule-generation/adapters/
+    intent: "Create per-tool rule adapters and generic factory"
+    mode: create
+  - path: src/core/rule-generation/rule-templates.ts
+    intent: "Define code-philosophy rule template content"
+    mode: create
+  - path: src/core/init.ts
+    intent: "Add rule generation step after skills/commands"
+    mode: modify
+  - path: src/core/update.ts
+    intent: "Add rule regeneration to update flow"
+    mode: modify
+  - path: src/core/shared/tool-detection.ts
+    intent: "Add RULE_IDS constant for tracking"
+    mode: modify

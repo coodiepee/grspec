@@ -1,0 +1,5 @@
+# MANDATORY: DO NOT SPAWN SUBAGENTS
+
+You MUST NOT use the Task tool under any circumstances.
+Do all work directly using available tools instead.
+Never invoke subagents. Never delegate tasks to subagents.

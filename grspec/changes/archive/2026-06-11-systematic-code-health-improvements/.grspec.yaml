@@ -1,0 +1,27 @@
+schema: spec-driven
+created: 2026-06-11
+touches:
+  - path: src/cli/index.ts
+    intent: "Decompose into registration calls only"
+    mode: modify
+  - path: src/utils/command-error.ts
+    intent: "Create unified error handler"
+    mode: create
+  - path: src/utils/logger.ts
+    intent: "Create structured logger abstraction"
+    mode: create
+  - path: src/core/templates/loader.ts
+    intent: "Create runtime template file loader"
+    mode: create
+  - path: src/core/init.ts
+    intent: "Migrate to logger, extract command registration"
+    mode: modify
+  - path: src/core/update.ts
+    intent: "Migrate to logger"
+    mode: modify
+  - path: eslint.config.js
+    intent: "Re-enable disabled lint rules as warnings"
+    mode: modify
+  - path: src/core/templates/workflows/
+    intent: "Extract Markdown content from TypeScript files"
+    mode: modify

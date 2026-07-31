@@ -1,0 +1,27 @@
+schema: spec-driven
+created: 2026-05-20
+touches:
+  - path: src/core/wiki.ts
+    intent: "Create wiki page parser, delta detection, merge, index/log, locking"
+    mode: create
+  - path: src/core/wiki-lint.ts
+    intent: "Create structural lint engine for wiki health checks"
+    mode: create
+  - path: src/commands/wiki.ts
+    intent: "Create grspec wiki lint and status CLI commands"
+    mode: create
+  - path: src/core/archive.ts
+    intent: "Add wiki delta merge and source summary generation to archive flow"
+    mode: modify
+  - path: src/core/project-config.ts
+    intent: "Add wiki section to ProjectConfig Zod schema"
+    mode: modify
+  - path: src/cli/index.ts
+    intent: "Register grspec wiki command group"
+    mode: modify
+  - path: .cursor/skills/grspec-wiki/SKILL.md
+    intent: "Create /grsx:wiki skill with init, ingest, lint, query, sync, status"
+    mode: create
+  - path: .cursor/skills/grspec-propose/SKILL.md
+    intent: "Add wiki navigation preamble and wiki delta generation"
+    mode: modify

@@ -1,0 +1,27 @@
+schema: spec-driven
+created: 2026-06-15
+touches:
+  - path: src/core/ui/init.ts
+    intent: Create init module with stack detection, query assembly, and idempotency guard
+    mode: create
+  - path: src/commands/ui.ts
+    intent: Register init subcommand with structured options
+    mode: modify
+  - path: src/core/ui/index.ts
+    intent: Export new init types and functions
+    mode: modify
+  - path: .cursor/skills/grspec-ui-init/SKILL.md
+    intent: Create agent skill for intelligent UI initialization
+    mode: create
+  - path: .cursor/commands/grsx-ui-init.md
+    intent: Create command entry point routing to skill
+    mode: create
+  - path: .cursor/skills/grspec-ui/SKILL.md
+    intent: Add init reference to How to Use table
+    mode: modify
+  - path: test/core/ui/init.test.ts
+    intent: Add unit tests for init module
+    mode: create
+  - path: test/commands/ui-init.test.ts
+    intent: Add integration tests for init subcommand
+    mode: create
