@@ -33,6 +33,19 @@ describe('available-tools', () => {
       expect(tools[0].skillsDir).toBe('.claude');
     });
 
+    it('should detect DeepSeek Harness from its project skills root', async () => {
+      await fs.mkdir(path.join(testDir, '.dsh'), { recursive: true });
+
+      const tools = getAvailableTools(testDir);
+      expect(tools).toHaveLength(1);
+      expect(tools[0]).toMatchObject({
+        name: 'DeepSeek Harness',
+        value: 'deepseek',
+        available: true,
+        skillsDir: '.dsh',
+      });
+    });
+
     it('should detect multiple tool directories', async () => {
       await fs.mkdir(path.join(testDir, '.claude'), { recursive: true });
       await fs.mkdir(path.join(testDir, '.cursor'), { recursive: true });

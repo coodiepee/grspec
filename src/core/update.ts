@@ -11,7 +11,7 @@ import ora from 'ora';
 import * as fs from 'fs';
 import { createRequire } from 'module';
 import { FileSystemUtils } from '../utils/file-system.js';
-import { transformToHyphenCommands } from '../utils/command-references.js';
+import { resolveSkillInstructionTransformer } from '../utils/command-references.js';
 import { AI_TOOLS, GRSPEC_DIR_NAME } from './config.js';
 import { logger } from '../utils/logger.js';
 import {
@@ -212,8 +212,8 @@ export class UpdateCommand {
             const skillDir = path.join(skillsDir, dirName);
             const skillFile = path.join(skillDir, 'SKILL.md');
 
-            // Use hyphen-based command references for OpenCode
-            const transformer = (tool.value === 'opencode' || tool.value === 'pi') ? transformToHyphenCommands : undefined;
+            // Some tools invoke skills with different slash syntax than /grsx:*
+            const transformer = resolveSkillInstructionTransformer(tool.value);
             const skillContent = generateSkillContent(template, GRSPEC_VERSION, transformer);
             await FileSystemUtils.writeFile(skillFile, skillContent);
           }
