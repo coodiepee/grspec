@@ -235,6 +235,13 @@ The command SHALL generate grsx slash commands only for selected tools that have
 - **THEN** grspec SHALL treat it as a supported tool with `skillsDir: '.kimi'`
 - **AND** command-file generation SHALL be skipped because no Kimi adapter is registered
 
+#### Scenario: DeepSeek Harness skips command-file generation
+
+- **WHEN** the user selects DeepSeek Harness during initialization
+- **THEN** grspec SHALL treat it as a supported tool with `skillsDir: '.dsh'`
+- **AND** command-file generation SHALL be skipped because no DeepSeek adapter is registered
+- **AND** generated skill instructions SHALL reference `/grspec-*` skill commands instead of `/grsx:*` commands
+
 ### Requirement: Config File Generation
 
 The command SHALL create an grspec config file with schema settings.

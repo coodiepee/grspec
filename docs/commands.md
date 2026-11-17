@@ -647,6 +647,7 @@ Different AI tools use slightly different command syntax. Use the format that ma
 | Windsurf | `/grsx-propose`, `/grsx-apply` |
 | Copilot (IDE) | `/grsx-propose`, `/grsx-apply` |
 | Kimi CLI | Skill-based invocations such as `/skill:grspec-propose`, `/skill:grspec-apply-change` (no generated `grsx-*` command files) |
+| DeepSeek Harness | Skill-based invocations such as `/grspec-propose`, `/grspec-apply-change` (no generated `grsx-*` command files) |
 | Trae | Skill-based invocations such as `/grspec-propose`, `/grspec-apply-change` (no generated `grsx-*` command files) |
 
 The intent is the same across tools, but how commands are surfaced can differ by integration.

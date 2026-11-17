@@ -42,6 +42,12 @@ The `AI_TOOLS` array SHALL include `skillsDir` for tools that support the Agent 
 - **WHEN** looking up the `kimi` tool
 - **THEN** `skillsDir` SHALL be `.kimi`
 
+#### Scenario: DeepSeek Harness paths defined
+
+- **WHEN** looking up the `deepseek` tool
+- **THEN** `skillsDir` SHALL be `.dsh`
+- **AND** skills SHALL be written to `.dsh/skills/grspec-<workflow>/SKILL.md`, the project root DeepSeek Harness scans
+
 #### Scenario: Tools without skillsDir
 
 - **WHEN** a tool has no `skillsDir` defined
