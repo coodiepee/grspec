@@ -37,7 +37,7 @@ Rules are always-on guidelines that shape how AI writes code — naming conventi
 
 ### 30+ Tool Support
 
-Works with Cursor, Claude Code, Windsurf, GitHub Copilot, Cline, RooCode, Kilo Code, Gemini CLI, Codex, Kiro, and [20+ more](docs/supported-tools.md).
+Works with Cursor, Claude Code, Windsurf, GitHub Copilot, Cline, RooCode, Kilo Code, Gemini CLI, Codex, DeepSeek Harness, Kiro, and [20+ more](docs/supported-tools.md).
 
 ### Wiki Knowledge Base
 

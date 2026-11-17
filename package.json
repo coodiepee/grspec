@@ -1,6 +1,6 @@
 {
   "name": "@coodiepee/grspec",
-  "version": "0.7.1",
+  "version": "0.7.2",
   "description": "AI-native system for spec-driven development — vibe coding framework",
   "keywords": [
     "grspec",
@@ -10,10 +10,10 @@
     "development",
     "vibe-coding"
   ],
-  "homepage": "https://github.com/coodie/GrSpec",
+  "homepage": "https://github.com/coodiepee/grspec",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/coodie/GrSpec.git"
+    "url": "git+https://github.com/coodiepee/grspec.git"
   },
   "license": "MIT",
   "author": "grspec Contributors",
@@ -88,6 +88,6 @@
     "test": "test"
   },
   "bugs": {
-    "url": "https://github.com/coodie/GrSpec/issues"
+    "url": "https://github.com/coodiepee/grspec/issues"
   }
 }

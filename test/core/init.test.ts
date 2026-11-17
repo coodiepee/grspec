@@ -199,6 +199,35 @@ describe('InitCommand', () => {
       ).toBe(true);
     });
 
+    it('should support DeepSeek Harness as an adapterless skills-only tool', async () => {
+      saveGlobalConfig({
+        featureFlags: {},
+        profile: 'standard',
+        delivery: 'both',
+      });
+
+      const initCommand = new InitCommand({ tools: 'deepseek', force: true });
+      await initCommand.execute(testDir);
+
+      // DeepSeek Harness discovers project skills from .dsh/skills
+      const skillFile = path.join(testDir, '.dsh', 'skills', 'grspec-explore', 'SKILL.md');
+      expect(await fileExists(skillFile)).toBe(true);
+
+      // DSH invokes skills by name, so cross-references use /grspec-* not /grsx:*
+      const skillContent = await fs.readFile(skillFile, 'utf-8');
+      expect(skillContent).not.toContain('/grsx:');
+
+      const commandsDir = path.join(testDir, '.dsh', 'commands');
+      expect(await directoryExists(commandsDir)).toBe(false);
+
+      const logCalls = (console.log as unknown as { mock: { calls: unknown[][] } }).mock.calls.flat().map(String);
+      expect(
+        logCalls.some(
+          (entry) => entry.includes('Commands skipped for: deepseek') && entry.includes('(no adapter)'),
+        ),
+      ).toBe(true);
+    });
+
     it('should create skills for multiple tools at once', async () => {
       const initCommand = new InitCommand({ tools: 'claude,cursor', force: true });
 

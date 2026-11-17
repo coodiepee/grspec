@@ -37,6 +37,7 @@ You can enable expanded workflows (`new`, `continue`, `ff`, `verify`, `bulk-arch
 | CoStrict (`costrict`) | `.cospec/skills/grspec-*/SKILL.md` | `.cospec/grspec/commands/grsx-<id>.md` | `.cospec/rules/grspec-<id>.md` |
 | Crush (`crush`) | `.crush/skills/grspec-*/SKILL.md` | `.crush/commands/grsx/<id>.md` | `.crush/rules/grspec-<id>.md` |
 | Cursor (`cursor`) | `.cursor/skills/grspec-*/SKILL.md` | `.cursor/commands/grsx-<id>.md` | `.cursor/rules/grspec-<id>.mdc` |
+| DeepSeek Harness (`deepseek`) | `.dsh/skills/grspec-*/SKILL.md` | — | `.dsh/rules/grspec-<id>.md` |
 | Factory Droid (`factory`) | `.factory/skills/grspec-*/SKILL.md` | `.factory/commands/grsx-<id>.md` | `.factory/rules/grspec-<id>.md` |
 | Gemini CLI (`gemini`) | `.gemini/skills/grspec-*/SKILL.md` | `.gemini/commands/grsx/<id>.toml` | `.gemini/rules/grspec-<id>.md` |
 | GitHub Copilot (`github-copilot`) | `.github/skills/grspec-*/SKILL.md` | `.github/prompts/grsx-<id>.prompt.md`\*\* | `.github/instructions/grspec-<id>.instructions.md` |
@@ -76,7 +77,7 @@ grspec init --tools none
 grspec init --profile core
 ```
 
-**Available tool IDs (`--tools`):** `grcode`, `amazon-q`, `antigravity`, `auggie`, `bob`, `claude`, `cline`, `codex`, `forgecode`, `codebuddy`, `continue`, `costrict`, `crush`, `cursor`, `factory`, `gemini`, `github-copilot`, `iflow`, `junie`, `kilocode`, `kimi`, `kiro`, `opencode`, `pi`, `qoder`, `lingma`, `qwen`, `roocode`, `trae`, `windsurf`
+**Available tool IDs (`--tools`):** `grcode`, `amazon-q`, `antigravity`, `auggie`, `bob`, `claude`, `cline`, `codex`, `forgecode`, `codebuddy`, `continue`, `costrict`, `crush`, `cursor`, `deepseek`, `factory`, `gemini`, `github-copilot`, `iflow`, `junie`, `kilocode`, `kimi`, `kiro`, `opencode`, `pi`, `qoder`, `lingma`, `qwen`, `roocode`, `trae`, `windsurf`
 
 ## Workflow-Dependent Installation
 
